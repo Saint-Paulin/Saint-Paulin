@@ -1,0 +1,23 @@
+$TTL  86400 ; une journee
+@           IN            SOA    ns.paulin.poe. root.paulin.poe. (
+
+                                 2018031300 ; serial YYYYMMDDNN
+                                 43200 ; Refresh 12 heure
+                                 3600  ; Retry dans une heure
+                                 604800; Expire dans une semaine
+                                 800   ; Negative cache TTL
+                               );
+
+@            IN  NS  ns.paulin.poe.
+;@	IN	MX	10 formation8.paulin.poe.
+ns          IN  A   10.8.0.1
+www          IN  A   10.8.0.7
+;formation8	IN  CNAME   ns.paulin.poe.
+docker	IN	A	10.8.0.9
+www1	IN	A	10.8.0.7
+www2	IN	A	10.8.0.8
+backup	IN	A	10.8.0.4
+centreon	IN	A	10.8.0.5
+mail	IN	A	10.8.0.6
+blog	IN	CNAME	www1
+;wiki	IN	CNAME	www1

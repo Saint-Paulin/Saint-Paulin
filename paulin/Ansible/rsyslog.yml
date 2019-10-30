@@ -1,0 +1,9 @@
+---
+- hosts: centos
+  tasks:
+  - name: 1. Installation Rsyslog
+    yum: name=rsyslog state=present
+  - name: 2. Copie du fichier rsyslog.conf
+    copy: src=rsyslog.conf dest=/etc/
+  - name: 3. Enable et démarrage du service
+    service: name=rsyslog state=restarted enabled=yes

@@ -1,0 +1,36 @@
+---
+- hosts: websrv
+  handlers:
+  - name: restart httpd
+    service: name=httpd state=restarted 
+  tasks:
+  - name: 1. Installation Apache
+    yum: name=httpd state=present 
+  - name: 2. Installation Centos-release-scl
+    yum: name=centos-release-scl state=present 
+  - name: 3. Installation de PHP et extensions PHP
+    yum: name={{item}} state=present
+    with_items:
+    - rh-php56 
+    - rh-php56-php 
+    - rh-php56-php-fpm 
+    - rh-php56-php-mysqlnd
+    # - php-pdo
+    # - php-mysql
+    # - php-soap
+    # - php-gd
+    # - php-pear-MDB2-Driver-mysqli
+  - name: 4. Installation de MariaDB
+    yum: name=mariadb-server 
+  - name: 5. Démarrage Apache
+    service: name=httpd state=started enabled=yes 
+  - name: 6. Démarrage MariaDB
+    service: name=mariadb state=started enabled=yes 
+  - name: 7. Installation index
+    shell: echo "Bonjour" > /var/www/html/index.html
+    notify:
+    - restart httpd 
+#  - name: 8. Ajout de la règle de pare-feu
+#    action: command /usr/bin/firewall-cmd --permanent --add-port=80/tcp 
+#  - name: 9. Redémarrer le pare-feu
+#    service: name=firewalld state=restarted

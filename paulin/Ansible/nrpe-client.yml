@@ -1,0 +1,18 @@
+---
+- hosts: centos
+  tasks:
+  - name: 1. Installation de NRPE
+    yum: name={{item}} state=present
+    with_items:
+    - nrpe 
+    - nagios-plugins-all
+  - name: 2. Enable et démarrage du service
+    service: name=nrpe state=started enabled=yes
+  - name: 3. Ajout de centreon dans nrpe
+    replace: 
+      path: /etc/nagios/nrpe.cfg
+      regexp: '^allowed_hosts=127.0.0.1,::1$'
+      replace: 'allowed_hosts=127.0.0.1,centreon,::1'
+      backup: yes
+  - name: 4. Redémmarrage de NRPE
+    service: name=nrpe state=restarted

@@ -1,0 +1,29 @@
+127.0.0.1 localhost.localdomain localhost
+192.168.20.209 formation8.paulin.poe ldap.paulin.poe formation8 formation8.capen.sis
+
+# The following lines are desirable for IPv6 capable hosts
+
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+
+192.168.20.247	formagit
+192.168.20.81	formation
+
+### Mes VM
+
+10.8.0.2	dns
+10.8.0.3	ldap
+10.8.0.4	backup
+10.8.0.5	centreon
+10.8.0.6	mail
+
+10.8.0.7	www1	www1.paulin.poe blog.paulin.poe	wiki.paulin.poe	webmail.paulin.poe supervision.paulin.poe
+10.8.0.8	www2	www2.paulin.poe
+10.8.0.9	docker
+192.168.20.211	portainer
+
+

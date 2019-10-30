@@ -1,0 +1,22 @@
+---
+- hosts: mail
+  tasks:
+    - name: 1) Installation de apache
+      package: name=httpd state=present
+    - name: 2) Installation Centos-release-scl
+      yum: name=centos-release-scl state=present 
+    - name: 3) Installation extensions PHP
+      yum: name={{item}} state=present
+      with_items:
+      - rh-php72 
+      - rh-php72-php 
+      - rh-php72-php-fpm
+    - name: 4) Téléchargement du zip roundcube
+      unarchive:
+        src: https://github.com/roundcube/roundcubemail/releases/download/1.3.10/roundcubemail-1.3.10-complete.tar.gz
+        dest: /var/www/html/
+        remote_src: yes
+        owner: apache
+        group: apache
+    - name: 5) Démarre et enable le service apache
+      service: name=httpd state=started enabled=yes

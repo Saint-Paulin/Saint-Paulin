@@ -1,0 +1,15 @@
+@ IN SOA        ns.paulin.poe. root.paulin.poe. (
+                   2007010401           ; Serial
+                         3600           ; Refresh [1h]
+                          600           ; Retry   [10m]
+                        86400           ; Expire  [1d]
+                          600 )         ; Negative Cache TTL [1h]
+;
+@       IN      NS      ns.paulin.poe.
+
+;1       IN      PTR     formation8.paulin.poe.
+;1       IN      PTR     formation8
+;1       IN      MX     mail.formation8.
+;9	IN	PTR	docker.paulin.poe.
+7	IN	PTR	www1
+8	IN	PTR	www2

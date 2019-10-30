@@ -1,0 +1,18 @@
+Host formagit
+        user paulin
+        IdentityFile ~/.ssh/id_rsa_paulin.poe
+Host dns
+	user formation
+	IdentityFile ~/.ssh/id_rsa_paulin.poe
+Host backup
+	User formation
+	IdentityFile ~/.ssh/id_rsa_paulin.poe
+Host www2
+	User formation
+	IdentityFile ~/.ssh/id_rsa_paulin.poe
+Host www1
+	User formation
+	IdentityFile ~/.ssh/id_rsa_paulin.poe
+Host docker
+	User formation
+	IdentityFile ~/.ssh/id_rsa_paulin.poe

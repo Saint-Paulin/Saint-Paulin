@@ -1,0 +1,45 @@
+---
+- hosts: centreon
+  tasks:
+  - name: 1. Installation de centos release scl
+    package: name=centos-release-scl state=present
+  - name: 2. Recupération du RPM de centreon
+    get_url:
+      url: http://yum.centreon.com/standard/18.10/el7/stable/noarch/RPMS/centreon-release-18.10-2.el7.centos.noarch.rpm
+      dest: /tmp/centreon-release-18.10-2.el7.centos.noarch.rpm
+  - name: 3. Retire le check des clé gpg de centreon
+    package: name=/tmp/centreon-release-18.10-2.el7.centos.noarch.rpm disable_gpg_check=no
+  - name: 4. Installation apache, centreon et mariadb
+    package: name={{item}} state=present
+    with_items:
+    - httpd
+    - centreon
+    - mariadb-server
+  - name: 5.1 Ajouter LimitNOFILE=32000 systemd
+    blockinfile:
+      create: yes
+      path: /etc/systemd/system/mariadb.service.d/limits.conf
+      content: |
+        [Service]
+        LimitNOFILE=32000
+  - name: 5.2 Rechargement des daemons  
+    shell: systemctl daemon-reload
+  - name: 6. Compte centreon
+    shell: yes yes | passwd centreon
+  - name: 7. /etc/php.ini > date.timezone Europe/Paris
+    shell: echo "date.timezone Europe/Paris" >> /etc/php.ini
+  - name: 8. /etc/opt/rh/rh-php71/php.d/php-timezone.ini
+    shell: echo "date.timezone = Europe/Paris" > /etc/opt/rh/rh-php71/php.d/php-timezone.ini
+  - name: 9. Démarrage des services Centreon
+    service: name={{item}} state=started enabled=yes 
+    with_items:
+    - httpd
+    - snmpd
+    - snmptrapd
+    - cbd
+    - rh-php71-php-fpm
+    - centcore
+    - centreontrapd
+    - centengine
+    - centreon
+    - mariadb
