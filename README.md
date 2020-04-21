@@ -5,7 +5,10 @@ Respect et Robustesse
 
 ## CSGO
 
+- Windows :
 C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg
+- Linux :
+~/.local/.../cfg
 
 - cfg/autoexec.cfg
 
