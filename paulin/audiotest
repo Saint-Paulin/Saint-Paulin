@@ -1,0 +1,10 @@
+pactl load-module module-loopback latency_msec=1
+pactl unload-module module-loopback
+
+pacmd list-cards
+
+ffplay -i INPUT -f alsa -nodisp -autoexit /home/paulin/Downloads/Bruitages_argent.mp3 >/dev/null 2>&1
+
+cat /proc/asound/devices
+
+arecord -L
