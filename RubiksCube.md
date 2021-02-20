@@ -15,13 +15,13 @@ haut face de droite
 
 - si ko : mettre face à face ko et face ok à droite
 
-haut droit
+haut face de droit
 3 couronne gauche
-bas droit
+bas face de droit
 3 couronne gauche
-haut droit
+haut face de droit
 2x3 couronne gauche
-bas droit
+bas face de droit
 
 - A faire si mal placé
 
@@ -38,7 +38,7 @@ bas face de gauche
 bas face de droite
 3 couronne droite
 
-### Orienter 4 dernier coins :
+### Orienter les 4 dernier coins :
 
 - A faire jusqu'a avoir le coin jaune au dessus
 - Dès que 1 coins ok, touner la 3 eme couronne pour avoir un coin pas bien orienté
